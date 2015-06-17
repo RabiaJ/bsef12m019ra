@@ -1,0 +1,39 @@
+﻿@using EAD_Proj1a.Models
+@model List<EAD_Proj1a.Models.Song>
+
+@{
+    Layout = "~/Views/Shared/_Layout4.cshtml";
+    ViewBag.Title = "Song | MySoundCloud";
+}
+
+
+
+@foreach (var x in ViewBag.sL)
+{
+    <div>
+        <div class="row" style="margin-bottom:15px">
+            <div class="col-xs-3">
+                <img src="@x.ImagePath" height="130" width="130" />
+            </div>
+            <div class="col-xs-3" style="color:antiquewhite ; font-size:large">
+                <br />
+                Song Name : @x.SongName <br />
+                Singer : @x.Singer <br />
+                Album / Movie : @x.AlbumMovie <br />
+                Artist : @x.Artist <br />
+            </div>
+            <div class="col-xs-1">
+                <br /> <br /> <>
+                    <audio controls>
+                        <source src="@x.SongPath" type="audio/ogg" />
+                        Your Browser doesn't support the audio element.
+                    </audio>
+                <br /> <br />
+                <form action="../removeFromPlayList/@x.Id" method="post">
+                    <input type="submit" style="margin-left:60px" value="Remove from PlayList" class="btn btn-warning" />
+                </form>
+                <br />
+            </div>
+        </div>
+    </div>
+}

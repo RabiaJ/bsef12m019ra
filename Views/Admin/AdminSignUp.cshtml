@@ -1,0 +1,51 @@
+﻿@using EAD_Proj1a.Models
+@model EAD_Proj1a.Models.Admin
+
+@{
+    Layout = "~/Views/Shared/_Layout3.cshtml";
+    ViewBag.Title = "Sign Up | MySoundCloud";
+}
+
+<div id="checking" style="font-size:large ; color:antiquewhite ; margin-top:10px ; margin-left:860px ; margin-bottom:30px" class="btn btn-success">
+    UserName     : <input type="text" placeholder="uName" style="margin-left:95px" id="uName" name="userName">
+    <input type="button" id="b1" value="?" class="btn btn-warning" /> <br /> <br />
+    <div id="result"></div>
+    @Scripts.Render("~/bundles/jquery")
+    <script>
+
+        $(document).ready(function () {
+
+            $('#formTag').hide();
+
+            $('#b1').click(function () {
+
+                var userName = $('#uName').val();
+
+                //alert('User Name ='+ userName);
+                $.getJSON("/Admin/CheckUserName?UserName=" + userName, function (data) {
+                    if (data == false) {
+                        $('#result').text("UserName Not Available");
+
+                    }
+                    else if (data == true) {
+                        $('#result').text("User Name is available");
+                        $('#checking').hide();
+                        $('#formTag').show();
+                    }
+                });
+
+            });
+
+        });
+    </script>
+</div>
+
+<div id="formTag">
+<form method="post" action="~/Admin/adminAccSignUp" style="font-size:large ; color:antiquewhite ; margin-top:10px ; margin-left:860px ; margin-bottom:30px" class="btn btn-success">
+    Name        : @Html.TextBoxFor(m => m.Name, new { style = "margin-left:53px" }) <br /> <br />
+    Email       : @Html.TextBoxFor(m => m.Email, new { style = "margin-left:53px" }) <br /> <br />
+    UserName    : @Html.TextBoxFor(m => m.Username, new { style = "margin-left:15px" }) <br /> <br />
+    Password    : @Html.PasswordFor(m => m.Password, new { style = "margin-left:18px" }) <br /> <br />
+    <input type="submit" class="btn btn-danger bgcolor" value="SignUp" style="margin-left:350px" />
+</form>
+</div>

@@ -1,0 +1,56 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="~/Bootstrap/bootstrap.css" />
+    <script src="~/Bootstrap/bootstrap.js"></script>
+    <title>_Layout2</title>
+</head>
+<body style="background-image: url('../../Images/background.jpg');">
+    <nav class="navbar navbar-inverse" role="navigation">
+        <div class="navbar-header">
+            <img src="~/Images/logo.jpg" style="margin-top:10px" />
+        </div>
+        <div>
+            <ul class="nav navbar-nav" style="margin-left:145px ; margin-top:45px">
+                <li> <a href="~/Admin/UploadSongs"> Upload </a> </li>
+                <li> <a href="~/Admin/ViewUsers"> Users </a> </li>
+                <li> <a href="~/Admin/ViewSongs"> Songs </a> </li>
+                <li> <a href="~/Home/Index" > User Panel </a> </li>
+            </ul>
+
+            <form action="../Admin/AdminLogOut" method="post" class="navbar-form navbar-right" style="margin-top:45px">
+                <input type="submit" value="SignOut" class="btn btn-warning" />
+            </form>
+
+          </div>
+    </nav>
+
+    <div style="margin-bottom:40px ; margin-left:860px ; color:antiquewhite ; font-family:'Times New Roman', Times, serif ; font-style:italic ; font-size:xx-large ; font-stretch:expanded">
+        Listen to the World's Music.
+    </div>
+
+    <div class="row" style="margin-top:30px">
+        
+        <div class="col-xs-9">
+
+        </div>
+
+        <div class="col-xs-4">
+
+            @RenderBody() ;
+
+        </div>
+    </div>
+
+    <footer class="modal-footer" style="height:3% ; background-color:black ; font-style:italic ; color:antiquewhite"> Made By Rabia Javed </footer>
+</body>
+
+</html>

@@ -1,0 +1,85 @@
+﻿@using EAD_Proj1a.Models
+@model List<EAD_Proj1a.Models.Song>
+
+
+@{
+    //Layout = null;
+    ViewBag.Title = "Songs Info | MySoundCloud";
+}
+
+<div>
+    <br /> <br />
+    <input type="text" name="tB1" id="uName" placeholder="Search Song By Name/Singer/Artist/Album/Movie" style="color:black">
+    <input type="button" id="b1" value="Search" class="btn btn-warning" /> <br /> <br />
+    <div id="result">
+        <p id="p1" style="color:antiquewhite">
+        </p>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    <script>
+
+        $(document).ready(function () {
+
+            $('#b1').click(function () {
+
+                var userName = $('#uName').val();
+
+                //alert('User Name ='+ userName);
+                $.getJSON("/Admin/searchSong?UserName=" + userName, function (data) {
+
+                    if (data[0].Id == 0)
+                    {
+                        $('#p1').append("No Song Found")
+                    }
+                    
+                    var i = 0;
+                    while(data[i].Id > 0)
+                    {
+                        $('#p1').append(" <br /> <br /> <img src=" + data[i].ImagePath + " height=" + 100 + " width=" + 100 + "/> <br />" +
+                        "ID : " + data[i].Id + "<br />" +
+                        "Name : " + data[i].SongName + "<br />" +
+                        "Album / Movie : " + data[i].AlbumMovie + "<br />" +
+                        "Artist : " + data[i].Artist + "<br />" +
+                        "Singer : " + data[i].Singer + "<br /> <br />" +
+                        "<audio controls> <source src=" + data[i].SongPath + "type=audio/ogg/> <audio>" +
+                        "<br /> <br />")
+                        i++;
+                    }
+
+                    
+                });
+
+            });
+
+        });
+    </script>
+</div>
+
+<br /> <br />
+
+@foreach (var x in ViewBag.SongsList)
+{
+    <div>
+        <div class="row" style="margin-bottom:15px">
+            <div class="col-xs-3">
+                <img src="@x.ImagePath" height="130" width="100" />
+            </div>
+            <div class="col-xs-8" style="color:antiquewhite ; font-size:large">
+                Song ID : @x.Id <br />
+                Song Name : @x.SongName <br />
+                Singer : @x.Singer <br />
+                Album / Movie : @x.AlbumMovie <br />
+                Artist : @x.Artist <br />
+            </div>
+            <div class="col-xs-1">
+                <br /> <br /> <p>
+                    <audio controls>
+                        <source src="@x.SongPath" type="audio/ogg" />
+                            Your Browser doesn't support the audio element.
+                    </audio>
+                </p>
+            </div>
+        </div>
+    </div>
+}

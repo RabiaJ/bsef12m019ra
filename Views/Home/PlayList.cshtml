@@ -1,0 +1,18 @@
+﻿@using EAD_Proj1a.Models
+@model EAD_Proj1a.Models.User
+
+@{
+    Layout = "~/Views/Shared/_Layout4.cshtml";
+    ViewBag.Title = "PlayList | MySoundCloud";
+}
+
+<br />
+<div class="col-xs-3" style="margin-left:200px ; color:antiquewhite ; font-size:large">
+    <img src="@ViewBag.ur.ProfilePic" height="200" width="200" />
+
+    @ViewBag.ur.Name <br />
+    @ViewBag.ur.Email <br /> <br />
+    <form role="search" action="~/Home/viewPListfunc" method="post">
+        <input type="submit" id="vPL" value="View PlayList" class="btn btn-warning" />
+    </form>
+</div>

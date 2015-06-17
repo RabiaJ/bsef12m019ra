@@ -1,0 +1,19 @@
+﻿@using EAD_Proj1a.Models
+@model EAD_Proj1a.Models.Admin
+
+@{
+    //Layout = "~/Views/Shared/_Layout2.cshtml";
+    ViewBag.Title = "Home | MySoundCloud";
+}
+
+
+<form method="post" action="~/Admin/adminUploadSongs" enctype="multipart/form-data" style="font-size:large ; color:antiquewhite ; margin-top:10px ; margin-left:840px" class="btn btn-warning">
+    Song Name       : <input type="text" placeholder="Song Name" name="name" style="margin-left:40px"> <br /> <br />
+    Singer          : <input type="text" placeholder="Singer" name="singer" style="margin-left:85px"> <br /> <br />
+    Album / Movie   : <input type="text" placeholder="Album / Movie " name="album" style="margin-left:20px"> <br /> <br />
+    Artist          : <input type="text" placeholder="Artist" name="artist" style="margin-left:95px"> <br /> <br />
+    Upload Song     : <input type="file" name="f1" /> <br />
+    Upload Picture  : <input type="file" name="f2" /> <br />
+    <input type="submit" class="btn btn-danger bgcolor" value="Upload" style="margin-left:350px" />
+</form>
+        

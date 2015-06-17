@@ -1,0 +1,50 @@
+﻿@using EAD_Proj1a.Models
+@model EAD_Proj1a.Models.User
+
+@{
+    //Layout = "~/Views/Shared/_Layout1.cshtml";
+    ViewBag.Title = "Sign Up | MySoundCloud";
+}
+
+<div id="checking" class="btn btn-danger" style="font-size:large ; margin-top:10px ; margin-left:260px ; color:antiquewhite">
+    UserName     : <input type="text" placeholder="uName" style="margin-left:95px" id="uName" name="userName">
+    <input type="button" id="b1" value="?" class="btn btn-success" /> <br /> <br />
+    <div id="result"></div>
+    @Scripts.Render("~/bundles/jquery")
+    <script>
+
+        $(document).ready(function () {
+
+            $('#formTag').hide();
+
+            $('#b1').click(function () {
+
+                var userName = $('#uName').val();
+
+                //alert('User Name ='+ userName);
+                $.getJSON("/home/CheckUserName?UserName=" + userName, function (data) {
+                    if (data == false) {
+                        $('#result').text("UserName Not Available");
+
+                    }
+                    else if(data == true) {
+                        $('#result').text("User Name is available");
+                        $('#checking').hide();
+                        $('#formTag').show();
+                    }
+                });
+
+            });
+
+        });
+    </script>
+</div>
+<div id="formTag">
+    <form method="post" action="../Home/userSignUp/" enctype="multipart/form-data" class="btn btn-danger" style="font-size:large ; margin-top:50px ; margin-left:260px ; color:antiquewhite">
+        UserName       : <input type="text" placeholder="Name" style="margin-left:30px" name="name"> <br /> <br />
+        Email      : <input type="text" placeholder="Email" style="margin-left:63px" name="email"> <br /> <br />
+        Password   : <input type="password" placeholder="Password" style="margin-left:30px" name="password" /> <br /> <br />
+        Choose Your Profile Picture : <input type="file" name="f1" /> <br />
+        <input type="submit" class="btn btn-warning bgcolor" value="SignUp" style="margin-left:360px" />
+    </form>
+</div>

@@ -1,0 +1,57 @@
+﻿@using EAD_Proj1a.Models
+@model List<EAD_Proj1a.Models.Song>
+
+@{
+    if((User)Session["userIn"] != null)
+    {
+        Layout = "~/Views/Shared/_Layout4.cshtml";
+    }
+    //Layout = "~/Views/Shared/_Layout1.cshtml";
+    ViewBag.Title = "Song | MySoundCloud";
+}
+
+
+@foreach(var x in ViewBag.sL)
+{
+    <div>
+        <div class="row" style="margin-bottom:15px">
+            <div class="col-xs-3">
+                <img src="@x.ImagePath" height="130" width="130" />
+            </div>
+            <div class="col-xs-3" style="color:antiquewhite ; font-size:large">
+                <br />
+                Song Name : @x.SongName <br />
+                Singer : @x.Singer <br />
+                Album / Movie : @x.AlbumMovie <br />
+                Artist : @x.Artist <br />
+            </div>
+            <div class="col-xs-1">
+                <br /> <br /> <br />
+                <audio controls>
+                    <source src="@x.SongPath" type="audio/ogg" />
+                    Your Browser doesn't support the audio element.
+                </audio>
+                <br /> <br />
+                @if ((User)Session["userIn"] != null)
+                {
+                    //myDBEntities db = new myDBEntities();
+                    //var q = (db.PlayLists.Where(y => (y.songID == x.Id) && (y.userID == ((User)Session["userIn"]).Id))).ToList();
+                    //if (q == null)
+                    //{
+                        <form role="search" action="../Home/addToPlayList/@x.Id" method="post">
+                            <input type="submit" style="margin-left:60px" value="Add To PlayList" class="btn btn-warning" />
+                        </form>
+                    //}
+                    //Session["sID"] = null ;
+                }
+                <br />
+            </div>
+        </div>
+    </div>
+}
+
+
+
+
+
+

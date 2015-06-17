@@ -1,0 +1,29 @@
+﻿@using EAD_Proj1a.Models
+@model List<EAD_Proj1a.Models.Song>
+
+@{
+    if ((User)Session["userIn"] != null)
+    {
+        Layout = "~/Views/Shared/_Layout4.cshtml";
+    }
+    //Layout = "~/Views/Shared/_Layout1.cshtml";
+    ViewBag.Title = "Contact | MySoundCloud";
+}
+
+
+            <form method="post" action="" class="btn btn-danger" style="font-size:medium ; color:antiquewhite ; margin-left:200px">
+    <br /> <br />
+    Name    : <input type="text" placeholder="Name"> <br /> <br />
+    Email   : <input type="text" placeholder="Email"> <br /> <br />
+    Your Message : <br /> <br />
+    <textarea rows="5" cols="35" placeholder="Write your Message Here"></textarea> <br />
+    <input type="submit" class="btn btn-warning bgcolor" value="Send" style="margin-left:260px" />
+</form>
+            <p style="font-size:large ; font-style:italic ; color:antiquewhite ; margin-left:750px"> <br /> Reach Us : </p>
+            <div class="alert-link"> 
+                <a href="www.facebook.com" style="color:black  ; margin-left:750px"> Contact us on Facebook </a>
+            </div>
+            <div class="alert-link">
+                <a href="www.twitter.com" style="color:black  ; margin-left:750px"> Follow us on Twitter </a>
+            </div>
+    
